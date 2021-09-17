@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homehealth/src/pages/home_page.dart';
+import 'package:homehealth/src/pages/laura_page.dart';
 import 'package:homehealth/src/pages/login_page.dart';
 
 void main() => runApp(MyApp());
@@ -10,10 +11,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: 'login',
+      initialRoute: 'laura',
       routes: {
         'login': (BuildContext context) => LoginPage(),
         'home': (BuildContext context) => HomePage(),
+        'laura': (BuildContext context) => LauraPage(),
       },
     );
   }
