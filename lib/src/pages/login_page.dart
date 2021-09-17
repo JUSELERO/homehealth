@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,6 +10,12 @@ class LoginPage extends StatelessWidget {
         children: <Widget>[
           _crearFondo(context),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushNamed(context, 'home');
+        },
+        label: const Text('Regresar'),
       ),
     );
   }
