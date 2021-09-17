@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+más tarde borro esto.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
