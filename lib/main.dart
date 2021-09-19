@@ -4,6 +4,7 @@ import 'package:homehealth/src/pages/botonPanico.dart';
 import 'package:homehealth/src/pages/home_page.dart';
 import 'package:homehealth/src/pages/inicio.dart';
 import 'package:homehealth/src/pages/login_page.dart';
+import 'package:homehealth/src/pages/opciones.dart';
 import 'package:homehealth/src/pages/registration_page.dart';
 import 'package:homehealth/src/pages/tomar_test.dart';
 
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
             TomarTest(), //¿Quieres tomar el test?
         'inicio': (BuildContext context) =>
             PagInicio(), //Inicio - ¿Cómo va tu día?
-        'botonPanico': (BuildContext context) => BotonPanico() //BotonPanico
+        'botonPanico': (BuildContext context) => BotonPanico(), //BotonPanico
+        'opciones': (BuildContext context) => Opciones()
       },
     );
   }
