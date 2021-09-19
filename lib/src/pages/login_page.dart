@@ -7,10 +7,62 @@ class LoginPage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           _crearFondo(context),
+          _loginForm(context),
         ],
       ),
     );
   }
+}
+
+Widget _loginForm(context) {
+  return SingleChildScrollView(
+    child: Column(
+      children: <Widget>[
+        SafeArea(
+          child: Container(
+            height: 180.0,
+          ),
+        ),
+        Container(
+          //se deberia poder poner el ancho por % yno por pixeels
+          width: 220.0,
+          margin: EdgeInsets.symmetric(vertical: 30.0),
+          padding: EdgeInsets.symmetric(vertical: 50.0),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5.0),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: Colors.black26, blurRadius: 3.0, spreadRadius: 3.0)
+              ]),
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Ingresso',
+                style: TextStyle(fontSize: 20.0),
+              ),
+              _crearEmail(),
+              SizedBox(
+                height: 30.0,
+              ),
+              _crearPassword(),
+              SizedBox(
+                height: 30.0,
+              ),
+              _crearBoton(),
+              SizedBox(
+                height: 30.0,
+              )
+            ],
+          ),
+        ),
+        Text('olvido la contrnasena?'),
+        SizedBox(
+          height: 100.0,
+        )
+      ],
+    ),
+  );
 }
 
 Widget _crearFondo(BuildContext context) {
@@ -66,5 +118,45 @@ Widget _crearFondo(BuildContext context) {
         ),
       )
     ],
+  );
+}
+
+Widget _crearEmail() {
+  return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            icon: Icon(
+              Icons.alternate_email,
+              color: Colors.deepPurple,
+            ),
+            hintText: 'ejemplo@corroe.com',
+            label: Text('correo electronico'),
+          )));
+}
+
+Widget _crearPassword() {
+  return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            icon: Icon(
+              Icons.password,
+              color: Colors.deepPurple,
+            ),
+            hintText: '*******',
+            label: Text('Crear contrasena'),
+          )));
+}
+
+Widget _crearBoton() {
+  return ElevatedButton(
+    onPressed: () {},
+    child: Container(
+      padding: EdgeInsets.symmetric(horizontal: 50.0),
+      child: Text('Ingresar'),
+    ),
   );
 }
