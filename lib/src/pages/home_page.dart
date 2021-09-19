@@ -32,6 +32,7 @@ class HomePage extends StatelessWidget {
                         ]),
                     style: TextStyle(fontSize: 55),
                   ),
+                  SizedBox(width: 20),
                   ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, 'login');
@@ -42,6 +43,7 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                         primary: Color(0xFF55aaff),
                       )),
+                  SizedBox(width: 20),
                   Text.rich(TextSpan(
                     text: "¿Aún no tienes una cuenta?",
                     children: [
@@ -51,6 +53,13 @@ class HomePage extends StatelessWidget {
                           recognizer: new TapGestureRecognizer()
                             ..onTap = () {
                               Navigator.pushNamed(context, 'registro');
+                            }),
+                      TextSpan(
+                          text: "Página principal",
+                          style: TextStyle(color: Colors.red),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, 'inicio');
                             })
                     ],
                   ))
