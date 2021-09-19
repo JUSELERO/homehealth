@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:homehealth/src/utils/fondo.dart';
 
 //import 'home_page.dart';
 
@@ -10,30 +12,77 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _nombre = "";
   String _email = "";
+  String _password = "";
+
+  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
-          _crearFondo(context),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
-            child: ListView(
-              // Crea los cuadros de texto
-              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-              children: <Widget>[
-                _crearInput(),
-                Divider(),
-                _crearEmail(),
-                Divider(),
-                _passwordField(),
-                Divider(),
-                _registrarPersona(),
-              ],
+          crearFondo(context),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text.rich(
+                    TextSpan(
+                        text: '¡Hola!',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black87),
+                        children: [
+                          TextSpan(
+                            text: 'Por favor, inicia sesión',
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
+                        ]),
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      // Crea los cuadros de texto
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 20.0),
+                      children: <Widget>[
+                        _crearInput(),
+                        Divider(),
+                        _crearEmail(),
+                        Divider(),
+                        _passwordField(),
+                        Divider(),
+                        _registrarPersona(),
+                      ],
+                    ),
+                  ),
+                  Text.rich(TextSpan(
+                    text: "¿Aún no tienes una cuenta?",
+                    children: [
+                      TextSpan(
+                          text: "Regístrate",
+                          style: TextStyle(color: Colors.blue[300]),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, 'registro');
+                            })
+                    ],
+                  ))
+                ],
+              ),
             ),
           ),
+          // ElevatedButton(
+          //     onPressed: () {
+          //       Navigator.pushNamed(context, 'home');
+          //     },
+          //     child: Text('Regresar a inicio'),
+          //     style: ElevatedButton.styleFrom(
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(20)),
+          //       primary: Color(0xFFFFD885),
+          //     )),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -46,14 +95,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _crearInput() {
-    TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
     return TextField(
       autofocus: true,
       style: style,
       decoration: InputDecoration(
           fillColor: Colors.white,
-          filled: true, //Colorea fondo de blanco
-          counter: Text('Letras ${_nombre.length}'),
+          filled: true,
           hintText: 'Ingresa tu nombre',
           labelText: 'Nombre',
           helperText: 'Por favor, ingresa tu nombre',
@@ -61,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
           icon: Icon(Icons.account_circle),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))),
       onChanged: (valor) {
         setState(() {
           _nombre = valor;
@@ -71,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _crearEmail() {
-    TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
     return TextField(
       keyboardType: TextInputType.emailAddress,
       style: style,
@@ -85,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
           icon: Icon(Icons.email),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))),
       onChanged: (valor) {
         setState(() {
           _email = valor;
@@ -95,7 +141,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _passwordField() {
-    TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
     return TextField(
       obscureText: true,
       keyboardType: TextInputType.emailAddress,
@@ -110,10 +155,10 @@ class _LoginPageState extends State<LoginPage> {
           icon: Icon(Icons.lock),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))),
       onChanged: (valor) {
         setState(() {
-          _email = valor;
+          _password = valor;
         });
       },
     );

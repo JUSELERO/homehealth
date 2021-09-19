@@ -8,8 +8,10 @@ Widget crearFondo(BuildContext context) {
     width: double.infinity,
     decoration: BoxDecoration(
         gradient: LinearGradient(colors: <Color>[
-      Color.fromRGBO(63, 63, 150, 1.0),
-      Color.fromRGBO(90, 70, 120, 1.0)
+      //Color.fromRGBO(63, 63, 150, 1.0),
+      //Color.fromRGBO(90, 70, 120, 1.0)
+      Color.fromRGBO(85, 170, 255, 1.0),
+      Color.fromRGBO(255, 241, 255, 1.0)
     ])),
   );
 

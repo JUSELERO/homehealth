@@ -1,7 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:homehealth/src/utils/fondo.dart';
 
-import 'login_page.dart';
+//import 'login_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -15,6 +16,9 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.all(50.0),
               child: Column(
                 children: [
+                  Image(
+                    image: AssetImage('assets/images/teddybear.png'),
+                  ),
                   Text.rich(
                     TextSpan(
                         text: 'Bienvenido,',
@@ -37,22 +41,25 @@ class HomePage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                         primary: Color(0xFF55aaff),
-                      ))
+                      )),
+                  Text.rich(TextSpan(
+                    text: "¿Aún no tienes una cuenta?",
+                    children: [
+                      TextSpan(
+                          text: "Regístrate",
+                          style: TextStyle(color: Colors.blue[300]),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, 'registro');
+                            })
+                    ],
+                  ))
                 ],
               ),
             ),
           ),
         ],
       ),
-
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () {
-      //     Navigator.pushNamed(context, 'login');
-      //   },
-      //   label: const Text('Iniciar sesión'),
-      //   backgroundColor: Color.fromRGBO(63, 63, 150, 1.0),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
