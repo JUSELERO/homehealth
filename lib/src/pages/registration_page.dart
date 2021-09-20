@@ -3,18 +3,20 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:homehealth/src/providers/usuario_provider.dart';
 import 'package:homehealth/src/utils/fondo.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegistererPage extends StatefulWidget {
   @override
-  createState() => _RegisterPageState();
+  createState() => _RegistererPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegistererPageState extends State<RegistererPage> {
   String _nombre = "";
   String _email = "";
   String _password = "";
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  //final UsuarioProvider = new UsuarioProvider();
 
   @override
   Widget build(BuildContext context) {

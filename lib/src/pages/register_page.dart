@@ -4,22 +4,23 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:homehealth/src/bloc/login_bloc.dart';
 import 'package:homehealth/src/providers/provider.dart';
+import 'package:homehealth/src/providers/usuario_provider.dart';
 import 'package:homehealth/src/utils/fondo.dart';
 
 //import 'home_page.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPage createState() => _RegisterPage();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPage extends State<RegisterPage> {
   String _nombre = "";
   String _email = "";
   String _password = "";
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
+  final Usuarioprovider = new UsuarioProvider();
   @override
   Widget build(BuildContext context) {
     //esta variable bloc se hace para poder tener control de los datos mediante la estructura bloc
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: FontWeight.bold, color: Colors.black87),
                         children: [
                           TextSpan(
-                            text: 'Por favor, inicia sesión',
+                            text: 'Ingrese los daots para registrarse',
                             style: TextStyle(fontWeight: FontWeight.normal),
                           ),
                         ]),
@@ -67,14 +68,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Text.rich(TextSpan(
-                    text: "¿Aún no tienes una cuenta?",
+                    text: "¿Quieres iniciar sesion",
                     children: [
                       TextSpan(
-                          text: "Regístrate",
+                          text: "Iniciar sesion",
                           style: TextStyle(color: Colors.blue[300]),
                           recognizer: new TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.pushNamed(context, 'registro');
+                              Navigator.pushNamed(context, 'login');
                             })
                     ],
                   )),
@@ -109,20 +110,19 @@ class _LoginPageState extends State<LoginPage> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return ElevatedButton(
             onPressed: () {
-              _login(bloc);
+              _register(bloc, context);
+              //_login(bloc);
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
-              child: Text('Ingresar'),
+              child: Text('REGISTRARSE'),
             ), //style: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.lerp(5.0, 5.0, 5.0)), SIRVE PARA DAR ESTILO AL NBOTON
           );
         });
   }
 
-  _login(LoginBloc bloc) {
-    print('hola hola ----------');
-    print('Email:   ${bloc.email} ');
-    print('Password:  ${bloc.password}  ');
+  _register(LoginBloc bloc, BuildContext context) {
+    Usuarioprovider.nuevoUsuario(bloc.email, bloc.password);
   }
 
   Widget _crearInput(LoginBloc bloc) {
@@ -178,7 +178,6 @@ class _LoginPageState extends State<LoginPage> {
             bloc.changeEmail(valor);
             setState(() {
               _email = valor;
-              log("HOLA ${snapshot.data.toString()}");
             });
           },
         ));
