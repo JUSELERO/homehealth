@@ -28,17 +28,13 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
+                  SizedBox(height: 80),
                   Text.rich(
                     TextSpan(
-                        text: '¡Hola!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black87),
-                        children: [
-                          TextSpan(
-                            text: 'Por favor, inicia sesión',
-                            style: TextStyle(fontWeight: FontWeight.normal),
-                          ),
-                        ]),
+                      text: 'Por favor, inicia sesión',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
                     style: TextStyle(fontSize: 20),
                   ),
                   Expanded(
@@ -53,10 +49,22 @@ class _LoginPageState extends State<LoginPage> {
                         Divider(),
                         _passwordField(),
                         Divider(),
-                        _registrarPersona(),
+                        //_registrarPersona(),
                       ],
                     ),
                   ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'tomartest');
+                      },
+                      child: Text('Iniciar sesión'),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        primary: Color(0xFF4ED3E3),
+                        minimumSize: Size(120.0, 40.0),
+                      )),
                   Text.rich(TextSpan(
                     text: "¿Aún no tienes una cuenta?",
                     children: [
@@ -73,24 +81,14 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          // ElevatedButton(
-          //     onPressed: () {
-          //       Navigator.pushNamed(context, 'home');
-          //     },
-          //     child: Text('Regresar a inicio'),
-          //     style: ElevatedButton.styleFrom(
-          //       shape: RoundedRectangleBorder(
-          //           borderRadius: BorderRadius.circular(20)),
-          //       primary: Color(0xFFFFD885),
-          //     )),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.pushNamed(context, 'home');
-        },
-        label: const Text('Regresar'),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, 'home');
+      //   },
+      //   label: const Text('Regresar'),
+      // ),
     );
   }
 

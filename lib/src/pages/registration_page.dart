@@ -16,6 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
           crearFondo(context),
@@ -24,18 +25,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
             child: Column(
               children: [
+                SizedBox(height: 80),
                 Text.rich(
                   TextSpan(
-                      text: '¡Hola!',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black87),
-                      children: [
-                        TextSpan(
-                          text:
-                              'Para registrarte, diligencia los siguientes datos',
-                          style: TextStyle(fontWeight: FontWeight.normal),
-                        ),
-                      ]),
+                    text: 'Diligencia los siguientes datos',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -54,6 +50,18 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                 ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'login');
+                    },
+                    child: Text('Crear cuenta'),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      primary: Color(0xFF4ED3E3),
+                      minimumSize: Size(120.0, 40.0),
+                    )),
                 Text.rich(TextSpan(
                   text: "¿Ya tienes una cuenta?",
                   children: [
@@ -71,12 +79,12 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.pushNamed(context, 'home');
-        },
-        label: const Text('Regresar'),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, 'home');
+      //   },
+      //   label: const Text('Regresar'),
+      // ),
     );
   }
 

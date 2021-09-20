@@ -10,41 +10,43 @@ class _BotonPanicoState extends State<BotonPanico> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
-      children: <Widget>[
-        crearFondo(context),
-        Center(
-          child: Padding(
-              padding: const EdgeInsets.all(50.0),
-              child: Column(
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '');
-                      },
-                      child: Text('¡Ayúdame!'),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        primary: Color(0xFFFF3238),
-                        minimumSize: Size(120.0, 40.0),
-                      )),
-                  SizedBox(width: 20),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '');
-                      },
-                      child: Text('Acompáñame'),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        primary: Color(0xFF4BFF32),
-                        minimumSize: Size(120.0, 40.0),
-                      ))
-                ],
-              )),
-        )
-      ],
-    ));
+          children: <Widget>[
+            crearFondo(context),
+            Center(
+              child: Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 200),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'llamada');
+                          },
+                          child: Text('¡Ayúdame!'),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            primary: Color(0xFFFF3238),
+                            minimumSize: Size(120.0, 40.0),
+                          )),
+                      SizedBox(width: 20),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'escucharAudios');
+                          },
+                          child: Text('Acompáñame'),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            primary: Color(0xFF4BFF32),
+                            minimumSize: Size(120.0, 40.0),
+                          )),
+                    ],
+                  )),
+            )
+          ],
+        ));
   }
 }

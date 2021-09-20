@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:homehealth/src/pages/botonPanico.dart';
 
+import 'package:homehealth/src/pages/audios.dart';
+import 'package:homehealth/src/pages/botonPanico.dart';
 import 'package:homehealth/src/pages/home_page.dart';
 import 'package:homehealth/src/pages/inicio.dart';
+import 'package:homehealth/src/pages/llamada.dart';
 import 'package:homehealth/src/pages/login_page.dart';
 import 'package:homehealth/src/pages/opciones.dart';
 import 'package:homehealth/src/pages/registration_page.dart';
@@ -26,7 +28,9 @@ class MyApp extends StatelessWidget {
         'inicio': (BuildContext context) =>
             PagInicio(), //Inicio - ¿Cómo va tu día?
         'botonPanico': (BuildContext context) => BotonPanico(), //BotonPanico
-        'opciones': (BuildContext context) => Opciones()
+        'opciones': (BuildContext context) => Opciones(),
+        'llamada': (BuildContext context) => Llamada(),
+        'escucharAudios': (BuildContext context) => EscucharAudios()
       },
     );
   }
