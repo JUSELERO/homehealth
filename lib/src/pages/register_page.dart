@@ -63,7 +63,7 @@ class _RegisterPage extends State<RegisterPage> {
                         Divider(),
                         _registrarPersona(),
                         Divider(),
-                        _loginButon(bloc)
+                        _registerButon(bloc)
                       ],
                     ),
                   ),
@@ -104,14 +104,14 @@ class _RegisterPage extends State<RegisterPage> {
     );
   }
 
-  Widget _loginButon(LoginBloc bloc) {
+//para el caso de registro deberia ser register./
+  Widget _registerButon(LoginBloc bloc) {
     return StreamBuilder(
         stream: bloc.formValidStream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return ElevatedButton(
             onPressed: () {
-              _register(bloc, context);
-              //_login(bloc);
+              snapshot.hasData ? _register(bloc, context) : Null;
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
@@ -121,8 +121,9 @@ class _RegisterPage extends State<RegisterPage> {
         });
   }
 
-  _register(LoginBloc bloc, BuildContext context) {
+  _register<bool>(LoginBloc bloc, BuildContext context) {
     Usuarioprovider.nuevoUsuario(bloc.email, bloc.password);
+    return true;
   }
 
   Widget _crearInput(LoginBloc bloc) {
@@ -133,6 +134,7 @@ class _RegisterPage extends State<RegisterPage> {
             autofocus: true,
             style: style,
             decoration: InputDecoration(
+                //errorText: snapshot.error.toString(),
                 fillColor: Colors.white,
                 filled: true,
                 hintText: 'Ingresa tu nombre',
@@ -162,10 +164,9 @@ class _RegisterPage extends State<RegisterPage> {
           keyboardType: TextInputType.emailAddress,
           style: style,
           decoration: InputDecoration(
+              errorText: snapshot.hasError ? '${snapshot.error}' : null,
               fillColor: Colors.white,
               filled: true,
-              //borrar de para que no se vea debajo
-              //counterText: snapshot.data,
               hintText: 'Ingresa tu correo electrónico',
               labelText: 'Email',
               helperText: 'Por favor, ingresa tu email',
@@ -178,6 +179,7 @@ class _RegisterPage extends State<RegisterPage> {
             bloc.changeEmail(valor);
             setState(() {
               _email = valor;
+              log('hola ${snapshot.data}');
             });
           },
         ));
@@ -187,7 +189,7 @@ class _RegisterPage extends State<RegisterPage> {
 
   Widget _passwordField(LoginBloc bloc) {
     return StreamBuilder(
-        stream: bloc.emailStream,
+        stream: bloc.passwordStream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return TextField(
             obscureText: true,
@@ -199,6 +201,7 @@ class _RegisterPage extends State<RegisterPage> {
                 hintText: 'Ingresa tu contraseña',
                 labelText: 'Password',
                 helperText: 'Por favor, ingresa tu contraseña',
+                errorText: snapshot.hasError ? '${snapshot.error}' : null,
                 suffixIcon: Icon(Icons.lock_open),
                 icon: Icon(Icons.lock),
                 contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),

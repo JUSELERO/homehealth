@@ -8,14 +8,17 @@ class LoginBloc with Validators {
   final _passwordController = BehaviorSubject<String>();
   final _nameController = BehaviorSubject<String>();
 
-  Stream<String> get emailStream => _emailController.stream;
-  Stream<String> get passwordStream => _passwordController.stream;
+  Stream<String> get emailStream =>
+      _emailController.stream.transform(validarEmail);
+  Stream<String> get passwordStream =>
+      _passwordController.stream.transform(validarPassword);
+
   Stream<String> get namedStream => _nameController.stream;
 
-  Stream<String> get formValidStream => CombineLatestStream.combine2(
+  Stream<bool> get formValidStream => CombineLatestStream.combine2(
         emailStream,
         passwordStream,
-        (a, b) => 'true',
+        (a, b) => true,
       );
 
   Function(String) get changeEmail => _emailController.sink.add;

@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:homehealth/src/bloc/login_bloc.dart';
 import 'package:homehealth/src/providers/provider.dart';
+
+import 'package:homehealth/src/providers/usuario_provider.dart';
 import 'package:homehealth/src/utils/fondo.dart';
 
 //import 'home_page.dart';
@@ -19,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   String _password = "";
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  final usuarioprovider = new UsuarioProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return ElevatedButton(
             onPressed: () {
-              _login(bloc);
+              snapshot.hasData ? _login(bloc) : Null;
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
@@ -120,9 +123,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _login(LoginBloc bloc) {
-    print('hola hola ----------');
-    print('Email:   ${bloc.email} ');
-    print('Password:  ${bloc.password}  ');
+    usuarioprovider.login(bloc.email, bloc.password);
   }
 
   Widget _crearInput(LoginBloc bloc) {
@@ -162,6 +163,7 @@ class _LoginPageState extends State<LoginPage> {
           keyboardType: TextInputType.emailAddress,
           style: style,
           decoration: InputDecoration(
+              errorText: snapshot.hasError ? '${snapshot.error}' : null,
               fillColor: Colors.white,
               filled: true,
               //borrar de para que no se vea debajo
@@ -188,13 +190,14 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _passwordField(LoginBloc bloc) {
     return StreamBuilder(
-        stream: bloc.emailStream,
+        stream: bloc.passwordStream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return TextField(
             obscureText: true,
             keyboardType: TextInputType.emailAddress,
             style: style,
             decoration: InputDecoration(
+                errorText: snapshot.hasError ? '${snapshot.error}' : null,
                 fillColor: Colors.white,
                 filled: true,
                 hintText: 'Ingresa tu contraseña',
