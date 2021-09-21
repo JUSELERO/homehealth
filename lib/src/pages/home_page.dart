@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   Image(
-                    image: AssetImage('assets/images/teddybear.png'),
+                    image: AssetImage('assets/images/help.png'),
                   ),
                   Text.rich(
                     TextSpan(
