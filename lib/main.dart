@@ -5,6 +5,7 @@ import 'package:homehealth/src/pages/login_page.dart';
 import 'package:homehealth/src/pages/prueba.dart';
 import 'package:homehealth/src/pages/register_page.dart';
 import 'package:homehealth/src/providers/provider.dart';
+import 'package:homehealth/src/utils/constants.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,6 +17,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Material App',
         initialRoute: 'home',
+        theme: ThemeData(
+          primaryColor: primaryColor,
+          scaffoldBackgroundColor: Colors.white
+        ),
         routes: {
           'login': (BuildContext context) => LoginPage(),
           'home': (BuildContext context) => HomePage(),

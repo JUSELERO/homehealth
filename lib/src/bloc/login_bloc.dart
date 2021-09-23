@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 import 'package:homehealth/src/bloc/validators.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -15,7 +14,7 @@ class LoginBloc with Validators {
 
   Stream<String> get namedStream => _nameController.stream;
 
-  Stream<bool> get formValidStream => CombineLatestStream.combine2(
+  Stream<bool> get formValidStream => Rx.combineLatest2(
         emailStream,
         passwordStream,
         (a, b) => true,
@@ -29,8 +28,8 @@ class LoginBloc with Validators {
   String get password => _passwordController.value;
 
   dispose() {
-    _emailController?.close();
-    _passwordController?.close();
-    _nameController?.close();
+    _emailController.close();
+    _passwordController.close();
+    _nameController.close();
   }
 }
