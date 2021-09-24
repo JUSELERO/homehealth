@@ -1,13 +1,9 @@
-// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:homehealth/src/pages/login_page.dart';
-import 'package:homehealth/src/pages/register_page.dart';
+import 'package:homehealth/src/pages/auth/login_page.dart';
+import 'package:homehealth/src/pages/auth/register_page.dart';
 import 'package:homehealth/src/utils/constants.dart';
-import 'package:homehealth/src/utils/fondo.dart';
 import 'package:homehealth/src/widgets/background.dart';
-
-//import 'login_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -86,58 +82,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      // body: Stack(
-      //   children: <Widget>[
-      //     crearFondo(context),
-      //     Center(
-      //       child: Padding(
-      //         padding: const EdgeInsets.all(50.0),
-      //         child: Column(
-      //           children: [
-      //             Image(
-      //               image: AssetImage('assets/images/help.png'),
-      //             ),
-      //             Text.rich(
-      //               TextSpan(
-      //                   text: 'Bienvenido,',
-      //                   style: TextStyle(
-      //                       fontWeight: FontWeight.bold, color: Colors.white),
-      //                   children: [
-      //                     TextSpan(
-      //                       text: 'usuario',
-      //                       style: TextStyle(fontWeight: FontWeight.normal),
-      //                     ),
-      //                   ]),
-      //               style: TextStyle(fontSize: 55),
-      //             ),
-      //             ElevatedButton(
-      //                 onPressed: () {
-      //                   Navigator.pushNamed(context, 'login');
-      //                 },
-      //                 child: Text('Iniciar sesión'),
-      //                 style: ElevatedButton.styleFrom(
-      //                   shape: RoundedRectangleBorder(
-      //                       borderRadius: BorderRadius.circular(20)),
-      //                   primary: Color(0xFF55aaff),
-      //                 )),
-      //             Text.rich(TextSpan(
-      //               text: "¿Aún no tienes una cuenta?",
-      //               children: [
-      //                 TextSpan(
-      //                     text: "Regístrate",
-      //                     style: TextStyle(color: Colors.blue[300]),
-      //                     recognizer: new TapGestureRecognizer()
-      //                       ..onTap = () {
-      //                         Navigator.pushNamed(context, 'registro');
-      //                       })
-      //               ],
-      //             ))
-      //           ],
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
     );
   }
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:homehealth/src/pages/home_page.dart';
-import 'package:homehealth/src/pages/login_page.dart';
-import 'package:homehealth/src/pages/register_page.dart';
-import 'package:homehealth/src/pages/register_profile_page.dart';
+import 'package:homehealth/src/pages/auth/login_page.dart';
+import 'package:homehealth/src/pages/auth/register_page.dart';
+import 'package:homehealth/src/pages/auth/register_profile_page.dart';
 import 'package:homehealth/src/providers/provider.dart';
 import 'package:homehealth/src/utils/constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        initialRoute: 'register-profile',
+        initialRoute: 'login',
         theme: ThemeData(
           primaryColor: primaryColor,
           scaffoldBackgroundColor: Colors.white

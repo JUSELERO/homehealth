@@ -1,5 +1,3 @@
-import 'dart:developer';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homehealth/src/bloc/login_bloc.dart';
@@ -8,25 +6,12 @@ import 'package:homehealth/src/providers/usuario_provider.dart';
 import 'package:homehealth/src/utils/utils.dart';
 import 'package:homehealth/src/widgets/background.dart';
 
-//import 'home_page.dart';
-
-class RegisterPage extends StatefulWidget {
-  @override
-  _RegisterPage createState() => _RegisterPage();
-}
-
-class _RegisterPage extends State<RegisterPage> {
-  // String _nombre = "";
-  // String _email = "";
-  // String _password = "";
-
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+class LoginPage extends StatelessWidget {
   final UsuarioProvider usuarioProvider = new UsuarioProvider();
   @override
   Widget build(BuildContext context) {
-    //esta variable bloc se hace para poder tener control de los datos mediante la estructura bloc
-    final bloc = Provider.of(context);
     final size = MediaQuery.of(context).size;
+    final bloc = Provider.of(context);
     return Scaffold(
       body: Background(
         child: SingleChildScrollView(
@@ -34,17 +19,18 @@ class _RegisterPage extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Registraste en HomeHelp!",
+                "Bievenido a HomeHelp!",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18.0
+                  fontSize: 22.0
                 )
               ),
               SizedBox( height: size.height * 0.05),
               SvgPicture.asset(
-                "assets/icons/signup.svg",
+                "assets/icons/login.svg",
                 height: size.height * 0.35,
               ),
+              SizedBox( height: size.height * 0.05),
               StreamBuilder(
                 stream: bloc.emailStream,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -99,14 +85,14 @@ class _RegisterPage extends State<RegisterPage> {
                   }
                 ),
               ),
-              StreamBuilder<Object>(
+              StreamBuilder(
                 stream: bloc.formValidStream,
                 builder: (context, snapshot) {
                   return ElevatedButton(
-                    onPressed: snapshot.hasData ? () => _register(bloc,context) : null,
+                    onPressed: snapshot.hasData ? () => _login(bloc,context) : null,
                     child: Container(
                       child: Text(
-                        'Registrar',
+                        'Entrar',
                         style: TextStyle(
                           fontSize: 18.0
                         ),
@@ -125,26 +111,25 @@ class _RegisterPage extends State<RegisterPage> {
                 }
               ),
               TextButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, 'login'), 
-                child: Text('¿Ya tienes cuenta?'),
+                onPressed: () => Navigator.pushReplacementNamed(context, 'registro'), 
+                child: Text('¿No tienes cuenta?'),
                 style: TextButton.styleFrom(
                   primary: Colors.black
                 ),
               ),
             ],
           ),
-        ),
+        )
       ),
     );
   }
 
-  _register(LoginBloc bloc, BuildContext context) async {
-    Map info = await usuarioProvider.registerUser(bloc.email, bloc.password);
+  _login(LoginBloc bloc, BuildContext context) async {
+    Map info = await usuarioProvider.login(bloc.email, bloc.password);
     if( info['ok'] ) {
-      Navigator.pushReplacementNamed(context, 'register-profile');
+      Navigator.pushReplacementNamed(context, 'home');
     } else {
       mostrarAlerta(context,info['mensaje']);
     }
   }
-
 }
