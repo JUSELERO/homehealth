@@ -8,25 +8,45 @@ class RegisterProfilePage extends StatelessWidget {
     return Scaffold(
       body: Background(
         child: SingleChildScrollView(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              width: size.width * 0.8,
-              decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(29)),
-              child: TextField(
-                onChanged: (value) => {},
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.person_outline_sharp, color: Colors.black12),
-                  hintText: "Nombre",
-                  border: InputBorder.none,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: size.width * 0.3,
+                margin: EdgeInsets.only(
+                  left: size.width * 0.5, 
+                  bottom: size.height * 0.03
+                ),
+                child: Image(image: AssetImage('assets/icons/logo.png'),)
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                child: Text(
+                  "Ingrese la siguiente información para completar el registro del perfil de usuario",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
+              SizedBox(height: size.height * 0.03,),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                width: size.width * 0.8,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(29)),
+                child: TextField(
+                  onChanged: (value) => {},
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.person_outline_sharp, color: Colors.black12),
+                    hintText: "Nombre",
+                    border: InputBorder.none,
+                  ),
+                ) ,
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 10),
@@ -99,6 +119,7 @@ class RegisterProfilePage extends StatelessWidget {
                     _selectDate(context);
                   },
                 )),
+            SizedBox(height: size.height * 0.02),
             ElevatedButton(
                 onPressed: (){},
                 child: Container(

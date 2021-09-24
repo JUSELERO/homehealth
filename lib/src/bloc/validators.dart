@@ -23,4 +23,35 @@ class Validators {
       }
     }
   );
+
+  final validateName = StreamTransformer<String,String>.fromHandlers(
+    handleData: ( name, sink ) {
+      if( name.length >= 4 ) {
+        sink.add(name);
+      } else {
+        sink.addError('Ingrese el nombre valido!');
+      }
+    }
+  );
+
+  final validateLastname = StreamTransformer<String,String>.fromHandlers(
+    handleData: ( lastname, sink ) {
+      if( lastname.length >= 4 ) {
+        sink.add(lastname);
+      } else {
+        sink.addError('Ingrese un apellido valido!');
+      }
+    }
+  );
+
+  final validatePhone = StreamTransformer<String,String>.fromHandlers(
+    handleData: ( phone, sink ) {
+      if( phone.length == 10 ) {
+        sink.add(phone);
+      } else {
+        sink.addError('Ingrese un número valido!');
+      }
+    }
+  );
+
 }
