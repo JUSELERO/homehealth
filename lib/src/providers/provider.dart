@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homehealth/src/bloc/login_bloc.dart';
+import 'package:homehealth/src/bloc/register_profile_bloc.dart';
 
 
 
@@ -24,4 +25,11 @@ class Provider extends InheritedWidget {
   static LoginBloc of ( BuildContext context ) {
     return context.dependOnInheritedWidgetOfExactType<Provider>().loginBloc;
   }
+
+  final registerProfileBloc = RegisterProfileBloc();
+
+  static RegisterProfileBloc registerProfile ( BuildContext context ) {
+    return context.dependOnInheritedWidgetOfExactType<Provider>().registerProfileBloc;
+  }
+
 }

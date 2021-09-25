@@ -26,7 +26,7 @@ class Validators {
 
   final validateName = StreamTransformer<String,String>.fromHandlers(
     handleData: ( name, sink ) {
-      if( name.length >= 4 ) {
+      if( name.length >= 2 ) {
         sink.add(name);
       } else {
         sink.addError('Ingrese el nombre valido!');
@@ -36,7 +36,7 @@ class Validators {
 
   final validateLastname = StreamTransformer<String,String>.fromHandlers(
     handleData: ( lastname, sink ) {
-      if( lastname.length >= 4 ) {
+      if( lastname.length >= 2 ) {
         sink.add(lastname);
       } else {
         sink.addError('Ingrese un apellido valido!');

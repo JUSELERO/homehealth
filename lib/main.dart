@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homehealth/src/pages/customer/main_customer_page.dart';
 
 import 'package:homehealth/src/pages/home_page.dart';
 import 'package:homehealth/src/pages/auth/login_page.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
           'login': (BuildContext context) => LoginPage(),
           'home': (BuildContext context) => HomePage(),
           'registro': (BuildContext context) => RegisterPage(),
-          'register-profile': (BuildContext context) => RegisterProfilePage()
+          'register-profile': (BuildContext context) => RegisterProfilePage(),
+          'main-customer': (BuildContext context) => MainCustomerPage(),
         },
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,

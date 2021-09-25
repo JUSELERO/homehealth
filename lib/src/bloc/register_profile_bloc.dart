@@ -6,7 +6,6 @@ import 'package:rxdart/rxdart.dart';
 
 class RegisterProfileBloc with Validators {
 
-  
   final _nameController = BehaviorSubject<String>();
   final _lastnameController = BehaviorSubject<String>();
   final _documentNumberController = BehaviorSubject<String>();
@@ -22,6 +21,8 @@ class RegisterProfileBloc with Validators {
   Stream<String> get phoneStream =>
     _phoneController.stream.transform(validatePhone);
 
+  Stream<String> get documentNumberStream => _documentNumberController.stream;
+  Stream<String> get birthdateStream => _birthdateController.stream;
 
   Function(String) get changeName => _nameController.sink.add;
   Function(String) get changeLastName => _lastnameController.sink.add;
