@@ -15,13 +15,9 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Bienvenido a HomeHelp",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25.0
-                )
-              ),
+              Text("Bienvenido a HomeHealth",
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0)),
               SizedBox(height: size.height * 0.05),
               SvgPicture.asset(
                 "assets/icons/chat.svg",
@@ -34,47 +30,39 @@ class HomePage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(29),
                   child: ElevatedButton(
-                    onPressed: () => Navigator.push(
-                      context, 
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage()
-                      )
-                    ),
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage())),
                     child: Text("Login"),
                     style: ElevatedButton.styleFrom(
-                      primary: primaryColor,
-                      padding: EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                      textStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500
-                      )
-                    ),
+                        primary: primaryColor,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500)),
                   ),
                 ),
               ),
-            Container(
+              Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 width: size.width * 0.8,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(29),
                   child: ElevatedButton(
                     onPressed: () => Navigator.push(
-                      context, 
-                      MaterialPageRoute(
-                        builder: (context) => RegisterPage()
-                      )
-                    ),
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterPage())),
                     child: Text("Registro"),
                     style: ElevatedButton.styleFrom(
-                      primary: primaryLigthColor,
-                      padding: EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500
-                      )
-                    ),
+                        primary: primaryLigthColor,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500)),
                   ),
                 ),
               )
@@ -84,5 +72,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
 }

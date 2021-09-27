@@ -19,7 +19,7 @@ class RegisterProfilePage extends StatelessWidget {
                 margin: EdgeInsets.only(
                     left: size.width * 0.5, bottom: size.height * 0.03),
                 child: Image(
-                  image: AssetImage('assets/icons/logo.png'),
+                  image: AssetImage('assets/images/teddybear.png'),
                 )),
             Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
@@ -43,21 +43,20 @@ class RegisterProfilePage extends StatelessWidget {
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(29)),
               child: StreamBuilder(
-                stream: bloc.nameStream,
-                builder: (context, snapshot) {
-                  return TextField(
-                    onChanged: (value) => bloc.changeName(value),
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.person_outline_sharp, color: Colors.black12),
-                      hintText: "Nombre",
-                      border: InputBorder.none,
-                      counterText: snapshot.data,
-                      errorText: snapshot.error
-                    ),
-                  );
-                }
-              ),
+                  stream: bloc.nameStream,
+                  builder: (context, snapshot) {
+                    return TextField(
+                      onChanged: (value) => bloc.changeName(value),
+                      keyboardType: TextInputType.name,
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.person_outline_sharp,
+                              color: Colors.black12),
+                          hintText: "Nombre",
+                          border: InputBorder.none,
+                          counterText: snapshot.data,
+                          errorText: snapshot.error),
+                    );
+                  }),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 10),
@@ -67,20 +66,19 @@ class RegisterProfilePage extends StatelessWidget {
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(29)),
               child: StreamBuilder(
-                stream: bloc.lastNameStream,
-                builder: (context, snapshot) {
-                  return TextField(
-                    onChanged: (value) => bloc.changeLastName,
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.person_outline_sharp, color: Colors.black12),
-                      hintText: "Apellido",
-                      border: InputBorder.none,
-                      errorText: snapshot.error
-                    ),
-                  );
-                }
-              ),
+                  stream: bloc.lastNameStream,
+                  builder: (context, snapshot) {
+                    return TextField(
+                      onChanged: (value) => bloc.changeLastName,
+                      keyboardType: TextInputType.name,
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.person_outline_sharp,
+                              color: Colors.black12),
+                          hintText: "Apellido",
+                          border: InputBorder.none,
+                          errorText: snapshot.error),
+                    );
+                  }),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 10),
@@ -90,20 +88,19 @@ class RegisterProfilePage extends StatelessWidget {
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(29)),
               child: StreamBuilder(
-                stream: bloc.documentNumberStream,
-                builder: (context, snapshot) {
-                  return TextField(
-                    onChanged: (value) => bloc.changeDocumentNumber(value),
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.credit_card, color: Colors.black12),
-                      hintText: "Número de Identificación",
-                      border: InputBorder.none,
-                      errorText: snapshot.error,
-                    ),
-                  );
-                }
-              ),
+                  stream: bloc.documentNumberStream,
+                  builder: (context, snapshot) {
+                    return TextField(
+                      onChanged: (value) => bloc.changeDocumentNumber(value),
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.credit_card, color: Colors.black12),
+                        hintText: "Número de Identificación",
+                        border: InputBorder.none,
+                        errorText: snapshot.error,
+                      ),
+                    );
+                  }),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 10),
@@ -113,20 +110,19 @@ class RegisterProfilePage extends StatelessWidget {
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(29)),
               child: StreamBuilder(
-                stream: bloc.phoneStream,
-                builder: (context, snapshot) {
-                  return TextField(
-                    onChanged: (value) => bloc.changePhone,
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.phone, color: Colors.black12),
-                      hintText: "Número de Telefono",
-                      border: InputBorder.none,
-                      errorText: snapshot.error,
-                    ),
-                  );
-                }
-              ),
+                  stream: bloc.phoneStream,
+                  builder: (context, snapshot) {
+                    return TextField(
+                      onChanged: (value) => bloc.changePhone,
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.phone, color: Colors.black12),
+                        hintText: "Número de Telefono",
+                        border: InputBorder.none,
+                        errorText: snapshot.error,
+                      ),
+                    );
+                  }),
             ),
             Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
@@ -136,55 +132,51 @@ class RegisterProfilePage extends StatelessWidget {
                     color: Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(29)),
                 child: StreamBuilder(
-                  stream: bloc.birthdateStream,
-                  builder: (context, snapshot) {
-                    return TextField(
-                      
-                      onChanged: (value) => {},
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        icon: Icon(Icons.calendar_today, color: Colors.black12),
-                        hintText: "Fecha de Nacimiento",
-                        border: InputBorder.none,
-                        counterText: snapshot.data
-                      ),
-                      onTap: () {
-                        FocusScope.of(context).requestFocus(new FocusNode());
-                        _selectDate(context,bloc);
-                      },
-                    );
-                  }
-                )),
+                    stream: bloc.birthdateStream,
+                    builder: (context, snapshot) {
+                      return TextField(
+                        onChanged: (value) => {},
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            icon: Icon(Icons.calendar_today,
+                                color: Colors.black12),
+                            hintText: "Fecha de Nacimiento",
+                            border: InputBorder.none,
+                            counterText: snapshot.data),
+                        onTap: () {
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          _selectDate(context, bloc);
+                        },
+                      );
+                    })),
             SizedBox(height: size.height * 0.02),
             StreamBuilder<Object>(
-              stream: bloc.formValidStream,
-              builder: (context, snapshot) {
-                return ElevatedButton(
-                  onPressed: snapshot.hasData ? () => {} : null,
-                  child: Container(
-                    child: Text(
-                      'Guardar',
-                      style: TextStyle(fontSize: 18.0),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 19, horizontal: 100),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(29)),
-                    elevation: 0.0,
-                    primary: Colors.deepPurple,
-                    onPrimary: Colors.white
-                  )
-                );
-              }
-            )
+                stream: bloc.formValidStream,
+                builder: (context, snapshot) {
+                  return ElevatedButton(
+                      onPressed: snapshot.hasData ? () => {} : null,
+                      child: Container(
+                        child: Text(
+                          'Guardar',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 19, horizontal: 100),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(29)),
+                          elevation: 0.0,
+                          primary: Colors.deepPurple,
+                          onPrimary: Colors.white));
+                })
           ],
         )),
       ),
     );
   }
 
-  void _selectDate(BuildContext context,RegisterProfileBloc bloc) async {
+  void _selectDate(BuildContext context, RegisterProfileBloc bloc) async {
     DateTime picked = await showDatePicker(
         context: context,
         initialDate: new DateTime.now(),

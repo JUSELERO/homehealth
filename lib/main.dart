@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        initialRoute: 'register-profile',
+        initialRoute: 'login',
         theme: ThemeData(
             primaryColor: primaryColor, scaffoldBackgroundColor: Colors.white),
         routes: {

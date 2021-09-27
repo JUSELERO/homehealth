@@ -24,10 +24,14 @@ class LoginPage extends StatelessWidget {
             Text("Bievenido a HomeHelp!",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
             SizedBox(height: size.height * 0.05),
-            SvgPicture.asset(
-              "assets/icons/login.svg",
+            Image(
+              image: AssetImage('assets/images/teddybear.png'),
               height: size.height * 0.35,
             ),
+            /* SvgPicture.asset(
+              "assets/icons/login.svg",
+              height: size.height * 0.35,
+            ), */
             SizedBox(height: size.height * 0.05),
             StreamBuilder(
                 stream: bloc.emailStream,

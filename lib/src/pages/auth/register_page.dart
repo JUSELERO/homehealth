@@ -31,103 +31,86 @@ class _RegisterPage extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Registraste en HomeHelp!",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0
-                )
-              ),
-              SizedBox( height: size.height * 0.05),
+              Text("Registraste en HomeHealth!",
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
+              SizedBox(height: size.height * 0.05),
               SvgPicture.asset(
                 "assets/icons/signup.svg",
                 height: size.height * 0.35,
               ),
               StreamBuilder(
-                stream: bloc.emailStream,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    padding: EdgeInsets.symmetric(horizontal:20, vertical: 5),
-                    width: size.width * 0.8,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(29)
-                    ),
-                    child: TextField(
-                      onChanged: (value) => bloc.changeEmail(value),
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          Icons.email_outlined, 
-                          color: Colors.black12  
-                        ),
-                        hintText: "Correo Electronico",
-                        border: InputBorder.none,
-                        errorText: snapshot.error
+                  stream: bloc.emailStream,
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      width: size.width * 0.8,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(29)),
+                      child: TextField(
+                        onChanged: (value) => bloc.changeEmail(value),
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            icon: Icon(Icons.email_outlined,
+                                color: Colors.black12),
+                            hintText: "Correo Electronico",
+                            border: InputBorder.none,
+                            errorText: snapshot.error),
                       ),
-                    ),
-                  );
-                }
-              ),
+                    );
+                  }),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
-                padding: EdgeInsets.symmetric(horizontal:20, vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 width: size.width * 0.8,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(29)
-                ),
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(29)),
                 child: StreamBuilder<Object>(
-                  stream: bloc.passwordStream,
-                  builder: (context, snapshot) {
-                    return TextField(
-                      onChanged: (value) => bloc.changePassword(value),
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          Icons.vpn_key_outlined, 
-                          color: Colors.black12  
-                        ),
-                        hintText: "Contraseña",
-                        border: InputBorder.none,
-                        errorText: snapshot.error
-                      ),
-                      obscureText: true,
-                    );
-                  }
-                ),
+                    stream: bloc.passwordStream,
+                    builder: (context, snapshot) {
+                      return TextField(
+                        onChanged: (value) => bloc.changePassword(value),
+                        decoration: InputDecoration(
+                            icon: Icon(Icons.vpn_key_outlined,
+                                color: Colors.black12),
+                            hintText: "Contraseña",
+                            border: InputBorder.none,
+                            errorText: snapshot.error),
+                        obscureText: true,
+                      );
+                    }),
               ),
               StreamBuilder(
-                stream: bloc.formValidStream,
-                builder: (context, snapshot) {
-                  return ElevatedButton(
-                    onPressed: snapshot.hasData ? () => _register(bloc,context) : null,
-                    child: Container(
-                      child: Text(
-                        'Registrar',
-                        style: TextStyle(
-                          fontSize: 18.0
+                  stream: bloc.formValidStream,
+                  builder: (context, snapshot) {
+                    return ElevatedButton(
+                        onPressed: snapshot.hasData
+                            ? () => _register(bloc, context)
+                            : null,
+                        child: Container(
+                          child: Text(
+                            'Registrar',
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 19, horizontal: 100),
                         ),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 19, horizontal: 100),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(29)
-                      ),
-                      elevation: 0.0,
-                      primary: Colors.deepPurple,
-                      onPrimary: Colors.white
-                    )
-                  );
-                }
-              ),
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(29)),
+                            elevation: 0.0,
+                            primary: Colors.deepPurple,
+                            onPrimary: Colors.white));
+                  }),
               TextButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, 'login'), 
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, 'login'),
                 child: Text('¿Ya tienes cuenta?'),
-                style: TextButton.styleFrom(
-                  primary: Colors.black
-                ),
+                style: TextButton.styleFrom(primary: Colors.black),
               ),
             ],
           ),
@@ -138,11 +121,10 @@ class _RegisterPage extends State<RegisterPage> {
 
   _register(LoginBloc bloc, BuildContext context) async {
     Map info = await usuarioProvider.registerUser(bloc.email, bloc.password);
-    if( info['ok'] ) {
+    if (info['ok']) {
       Navigator.pushReplacementNamed(context, 'register-profile');
     } else {
-      mostrarAlerta(context,info['mensaje']);
+      mostrarAlerta(context, info['mensaje']);
     }
   }
-
 }
