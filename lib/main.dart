@@ -1,4 +1,6 @@
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:homehealth/src/pages/contacts.dart';
 import 'package:homehealth/src/pages/customer/main_customer_page.dart';
 
 import 'package:homehealth/src/pages/home_page.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        initialRoute: 'login',
+        initialRoute: 'home',
         theme: ThemeData(
             primaryColor: primaryColor, scaffoldBackgroundColor: Colors.white),
         routes: {
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
           'registro': (BuildContext context) => RegisterPage(),
           'register-profile': (BuildContext context) => RegisterProfilePage(),
           'main-customer': (BuildContext context) => MainCustomerPage(),
+          'contacts': (BuildContext context) => ContactsPage()
         },
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
