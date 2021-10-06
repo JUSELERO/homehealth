@@ -104,6 +104,13 @@ class LoginPage extends StatelessWidget {
               child: Text('¿No tienes cuenta?'),
               style: TextButton.styleFrom(primary: Colors.black),
             ),
+            // ELIMINAR ->>>
+            TextButton(
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, 'contacts'),
+              child: Text('Buscar contactos'),
+              style: TextButton.styleFrom(primary: Colors.black),
+            ),
           ],
         ),
       )),
