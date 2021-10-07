@@ -1,5 +1,6 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:homehealth/src/pages/auth/audioplayer.dart';
 import 'package:homehealth/src/pages/contacts.dart';
 import 'package:homehealth/src/pages/customer/main_customer_page.dart';
 
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
           'registro': (BuildContext context) => RegisterPage(),
           'register-profile': (BuildContext context) => RegisterProfilePage(),
           'main-customer': (BuildContext context) => MainCustomerPage(),
-          'contacts': (BuildContext context) => ContactsPage()
+          'contacts': (BuildContext context) => ContactsPage(),
+          'audio': (BuildContext context) => AudioPlayerHH()
         },
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,

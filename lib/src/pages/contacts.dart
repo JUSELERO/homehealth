@@ -1,5 +1,6 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ContactsPage extends StatefulWidget {
   ContactsPage({Key key, this.title}) : super(key: key);
@@ -18,11 +19,23 @@ class _ContactsPageState extends State<ContactsPage> {
   @override
   void initState() {
     super.initState();
+    getPermissions(); // Added
     getAllContacts();
     searchController.addListener(() {
       filterContacts();
     });
   }
+
+  // Added
+  getPermissions() async {
+    if (await Permission.contacts.request().isGranted) {
+      getAllContacts();
+      searchController.addListener(() {
+        filterContacts();
+      });
+    }
+  }
+  //
 
   getAllContacts() async {
     List<Contact> _contacts =

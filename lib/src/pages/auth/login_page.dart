@@ -106,9 +106,8 @@ class LoginPage extends StatelessWidget {
             ),
             // ELIMINAR ->>>
             TextButton(
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, 'contacts'),
-              child: Text('Buscar contactos'),
+              onPressed: () => Navigator.pushReplacementNamed(context, 'audio'),
+              child: Text('Reproducir audio'),
               style: TextButton.styleFrom(primary: Colors.black),
             ),
           ],
