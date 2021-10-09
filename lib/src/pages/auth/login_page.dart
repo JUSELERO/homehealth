@@ -110,6 +110,12 @@ class LoginPage extends StatelessWidget {
               child: Text('Reproducir audio'),
               style: TextButton.styleFrom(primary: Colors.black),
             ),
+            TextButton(
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, 'contacts2'),
+              child: Text('Contactos'),
+              style: TextButton.styleFrom(primary: Colors.black),
+            ),
           ],
         ),
       )),

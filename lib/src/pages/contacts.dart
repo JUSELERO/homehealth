@@ -15,15 +15,16 @@ class _ContactsPageState extends State<ContactsPage> {
   List<Contact> contacts = [];
   List<Contact> contactsFiltered = [];
   TextEditingController searchController = new TextEditingController();
+  bool contactsLoaded = false; // NEW
 
   @override
   void initState() {
     super.initState();
     getPermissions(); // Added
-    getAllContacts();
-    searchController.addListener(() {
-      filterContacts();
-    });
+    //getAllContacts();
+    //searchController.addListener(() {
+    //  filterContacts();
+    //});
   }
 
   // Added
@@ -35,7 +36,7 @@ class _ContactsPageState extends State<ContactsPage> {
       });
     }
   }
-  //
+  // Added
 
   getAllContacts() async {
     List<Contact> _contacts =
@@ -66,7 +67,8 @@ class _ContactsPageState extends State<ContactsPage> {
     bool isSearching = searchController.text.isNotEmpty;
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          //widget.title
+          title: Text('hola'),
         ),
         body: Container(
             padding: EdgeInsets.all(20),
