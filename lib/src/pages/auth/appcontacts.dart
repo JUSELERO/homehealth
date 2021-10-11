@@ -53,6 +53,7 @@ class _MyAppContactsState extends State<MyAppContacts> {
       }
       return new AppContact(info: contact, color: baseColor);
     }).toList();
+    if (!mounted) return;
     setState(() {
       contacts = _contacts;
       contactsLoaded = true;

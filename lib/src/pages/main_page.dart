@@ -50,11 +50,11 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.text_snippet),
               backgroundColor: Colors.blueAccent,
-              label: 'Test',
+              label: 'Tests',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.school),
-              label: 'My perfil',
+              label: 'Perfil',
             ),
           ],
           onTap: _onItemTapped,

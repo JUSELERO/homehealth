@@ -55,6 +55,7 @@ class AudioPlayerHHState extends State<AudioPlayerHH> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         floatingActionButton: FloatingActionButton(
           onPressed: () => _saveActivity(context),
@@ -63,43 +64,50 @@ class AudioPlayerHHState extends State<AudioPlayerHH> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 5),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  Text("¡Estamos aquí para ti!",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 22.0)),
-                  SizedBox(height: size.height * 0.05),
-                  Text("Escucha algunas palabras reconfortantes más abajo",
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 20.0)),
-                  SizedBox(height: size.height * 0.05),
-                  Image(
-                    image: AssetImage('assets/images/teddybear.png'),
-                    height: size.height * 0.35,
-                  ),
-                  SizedBox(height: size.height * 0.05),
-                  IconButton(
-                    iconSize: 50,
-                    onPressed: () {
-                      audioPlayerState == AudioPlayerState.PLAYING
-                          ? pauseMusic()
-                          : playMusic();
-                    },
-                    icon: Icon(
-                      audioPlayerState == AudioPlayerState.PLAYING
-                          ? Icons.pause_rounded
-                          : Icons.play_arrow_rounded,
-                      color: Colors.orange,
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                color: Colors.pink,
+                margin: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.all(25),
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Text("¡Estamos aquí para ti!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22.0)),
+                    SizedBox(height: size.height * 0.05),
+                    Text("Escucha algunas palabras reconfortantes más abajo",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 20.0)),
+                    SizedBox(height: size.height * 0.05),
+                    Image(
+                      image: AssetImage('assets/images/relax.png'),
+                      height: size.height * 0.35,
                     ),
-                  ),
-                  Text("Dale play, Date un respiro",
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 20.0)),
-                ],
+                    SizedBox(height: size.height * 0.05),
+                    IconButton(
+                      iconSize: 50,
+                      onPressed: () {
+                        audioPlayerState == AudioPlayerState.PLAYING
+                            ? pauseMusic()
+                            : playMusic();
+                      },
+                      icon: Icon(
+                        audioPlayerState == AudioPlayerState.PLAYING
+                            ? Icons.pause_rounded
+                            : Icons.play_arrow_rounded,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    Text("Date un respiro. Dale play.",
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 20.0)),
+                    ElevatedButton(onPressed: () {}, child: Text('Boton'))
+                  ],
+                ),
               ),
             ),
           ],

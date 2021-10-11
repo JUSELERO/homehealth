@@ -202,7 +202,9 @@ class EditProfilePage extends StatelessWidget {
                       onChanged: (value) => bloc.changeAddress(value),
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
-                        icon: Icon(Icons.maps_home_work, color: Colors.black12),
+                        icon: Icon(
+                            IconData(0xe3c9, fontFamily: 'MaterialIcons'),
+                            color: Colors.black12),
                         hintText: "Dirección",
                         border: InputBorder.none,
                         //errorText: snapshot.error,

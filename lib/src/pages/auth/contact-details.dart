@@ -153,6 +153,7 @@ class _ContactDetailsState extends State<ContactDetails> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xFFFF006E),
         child: Icon(Icons.phone),
         onPressed: () =>
             launch("tel:${widget.contact.info.phones.first.value}"),
