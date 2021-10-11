@@ -123,8 +123,10 @@ class LoginPage extends StatelessWidget {
   }
 
   _login(LoginBloc bloc, BuildContext context) async {
+    final blocPR = Provider.registerProfile(context);
     Map info = await usuarioProvider.login(bloc.email, bloc.password);
     if (info['ok']) {
+      blocPR.changeUid(info['Uid']); //agrega el valor de UID par e lgeneral.
       Navigator.pushReplacementNamed(context, 'main-customer');
     } else {
       mostrarAlerta(context, info['mensaje']);

@@ -120,8 +120,12 @@ class _RegisterPage extends State<RegisterPage> {
   }
 
   _register(LoginBloc bloc, BuildContext context) async {
-    Map info = await usuarioProvider.registerUser(bloc.email, bloc.password);
+    final blocPR = Provider.registerProfile(context);
+    Map info = await usuarioProvider.registerUser(bloc.email,
+        bloc.password); //ahora en info incluye el valor de UID del usuario ***JSLR
     if (info['ok']) {
+      blocPR.changeUid(info['Uid']);
+      //se llaman dos bloc por lo que este que guarda el UID del siguiente formulario lo nombre distintio *** JSLR
       Navigator.pushReplacementNamed(context, 'register-profile');
     } else {
       mostrarAlerta(context, info['mensaje']);

@@ -4,10 +4,10 @@ import 'package:audioplayers/audio_cache.dart';
 
 class AudioPlayerHH extends StatefulWidget {
   @override
-  _AudioPlayerHHState createState() => _AudioPlayerHHState();
+  AudioPlayerHHState createState() => AudioPlayerHHState();
 }
 
-class _AudioPlayerHHState extends State<AudioPlayerHH> {
+class AudioPlayerHHState extends State<AudioPlayerHH> {
   AudioPlayer audioPlayer = AudioPlayer();
   AudioPlayerState audioPlayerState = AudioPlayerState.PAUSED;
   AudioCache audioCache;

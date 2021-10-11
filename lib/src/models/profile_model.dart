@@ -4,34 +4,38 @@
 
 import 'dart:convert';
 
-Profile profileFromJson(String str) => Profile.fromJson(json.decode(str));
+ProfileModel profileFromJson(String str) =>
+    ProfileModel.fromJson(json.decode(str));
 
-String profileToJson(Profile data) => json.encode(data.toJson());
+String profileToJson(ProfileModel data) => json.encode(data.toJson());
 
-class Profile {
-    String firstname;
-    String lastname;
-    String documentNumber;
-    String profilePicture;
-    String phone;
-    String address;
-    String birthdate;
-    String user;
-    String rol;
+class ProfileModel {
+  String uID;
+  String firstname;
+  String lastname;
+  String documentNumber;
+  String profilePicture;
+  String phone;
+  String address;
+  String birthdate;
+  String user;
+  String rol;
 
-    Profile({
-      this.firstname,
-      this.lastname,
-      this.documentNumber,
-      this.profilePicture = "",
-      this.phone,
-      this.address,
-      this.birthdate,
-      this.user,
-      this.rol,
-    });
+  ProfileModel({
+    this.uID,
+    this.firstname,
+    this.lastname,
+    this.documentNumber,
+    this.profilePicture = "",
+    this.phone,
+    this.address,
+    this.birthdate,
+    this.user,
+    this.rol,
+  });
 
-    factory Profile.fromJson(Map<String, dynamic> json) => Profile(
+  factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
+        uID: json["uID"],
         firstname: json["firstname"],
         lastname: json["lastname"],
         documentNumber: json["document_number"],
@@ -41,9 +45,10 @@ class Profile {
         birthdate: json["birthdate"],
         user: json["user"],
         rol: json["rol"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
+        "uID": uID,
         "firstname": firstname,
         "lastname": lastname,
         "document_number": documentNumber,
@@ -53,5 +58,5 @@ class Profile {
         "birthdate": birthdate,
         "user": user,
         "rol": rol,
-    };
+      };
 }
