@@ -46,12 +46,12 @@ class EditProfilePage extends StatelessWidget {
                 margin: EdgeInsets.only(
                     left: size.width * 0.5, bottom: size.height * 0.03),
                 child: Image(
-                  image: AssetImage('assets/icons/logo.png'),
+                  image: AssetImage('assets/images/teddybear.png'),
                 )),
             Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
               child: Text(
-                "Ingrese la siguiente información para completar el registro del perfil de usuario",
+                "Edite la informacion que sea de su gusto.",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18.0,

@@ -55,43 +55,69 @@ class AudioPlayerHHState extends State<AudioPlayerHH> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 5),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              Text("¡Estamos aquí para ti!",
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
-              SizedBox(height: size.height * 0.05),
-              Text("Escucha algunas palabras reconfortantes más abajo",
-                  style:
-                      TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0)),
-              SizedBox(height: size.height * 0.05),
-              Image(
-                image: AssetImage('assets/images/teddybear.png'),
-                height: size.height * 0.35,
-              ),
-              SizedBox(height: size.height * 0.05),
-              IconButton(
-                iconSize: 50,
-                onPressed: () {
-                  audioPlayerState == AudioPlayerState.PLAYING
-                      ? pauseMusic()
-                      : playMusic();
-                },
-                icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
-                    ? Icons.pause_rounded
-                    : Icons.play_arrow_rounded),
-              )
-            ],
-          ),
+        backgroundColor: Colors.transparent,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => _saveActivity(context),
+          child: Icon(Icons.call),
         ),
-      ],
-    ));
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 5),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  Text("¡Estamos aquí para ti!",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 22.0)),
+                  SizedBox(height: size.height * 0.05),
+                  Text("Escucha algunas palabras reconfortantes más abajo",
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal, fontSize: 20.0)),
+                  SizedBox(height: size.height * 0.05),
+                  Image(
+                    image: AssetImage('assets/images/teddybear.png'),
+                    height: size.height * 0.35,
+                  ),
+                  SizedBox(height: size.height * 0.05),
+                  IconButton(
+                    iconSize: 50,
+                    onPressed: () {
+                      audioPlayerState == AudioPlayerState.PLAYING
+                          ? pauseMusic()
+                          : playMusic();
+                    },
+                    icon: Icon(
+                      audioPlayerState == AudioPlayerState.PLAYING
+                          ? Icons.pause_rounded
+                          : Icons.play_arrow_rounded,
+                      color: Colors.orange,
+                    ),
+                  ),
+                  Text("Dale play, Date un respiro",
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal, fontSize: 20.0)),
+                ],
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Future<void> _saveActivity(BuildContext context) {
+    Navigator.pushNamed(context, "contacts2");
+    // return showDialog(
+    //   context: context,
+    //   barrierDismissible: false,
+    //   useSafeArea: false,
+    //   useRootNavigator: false,
+    //   builder: (BuildContext context) => AlertDialog(
+    //     title: Text('Success!'),
+    //     content: Text('You are in the football universe!'),
+
+    //   )
+    // );
   }
 }

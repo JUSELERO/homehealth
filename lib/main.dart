@@ -1,5 +1,6 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:homehealth/src/pages/activities/test_state.dart';
 import 'package:homehealth/src/pages/auth/appcontacts.dart';
 import 'package:homehealth/src/pages/auth/audioplayer.dart';
 import 'package:homehealth/src/pages/auth/edit_profile_page.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        initialRoute: 'login',
+        initialRoute: 'home',
         theme: ThemeData(
             primaryColor: primaryColor, scaffoldBackgroundColor: Colors.white),
         routes: {
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           'main-customer': (BuildContext context) => MainPage(),
           'contacts': (BuildContext context) => ContactsPage(),
           'contacts2': (BuildContext context) => MyAppContacts(),
+          'test-generico': (BuildContext context) => TestGeneric(),
           'audio': (BuildContext context) => AudioPlayerHH()
         },
         localizationsDelegates: [
