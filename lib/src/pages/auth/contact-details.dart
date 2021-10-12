@@ -2,7 +2,9 @@ import 'package:homehealth/src/pages/auth/app-contact.class.dart';
 import 'package:homehealth/src/components/contact-avatar.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:homehealth/src/pages/location.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:telephony/telephony.dart';
 
 class ContactDetails extends StatefulWidget {
   ContactDetails(this.contact, {this.onContactUpdate, this.onContactDelete});
@@ -15,6 +17,7 @@ class ContactDetails extends StatefulWidget {
 }
 
 class _ContactDetailsState extends State<ContactDetails> {
+  final Telephony telephony = Telephony.instance;
   @override
   Widget build(BuildContext context) {
     List<String> actions = <String>['Edit', 'Delete'];
@@ -153,11 +156,22 @@ class _ContactDetailsState extends State<ContactDetails> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFFFF006E),
-        child: Icon(Icons.phone),
-        onPressed: () =>
-            launch("tel:${widget.contact.info.phones.first.value}"),
-      ),
+          backgroundColor: const Color(0xFFFF006E),
+          child: Icon(Icons.phone),
+          onPressed: () async {
+            //launch("tel:${widget.contact.info.phones.first.value}");
+            final local = await determinePosition();
+            //final maps = Uri.https("google.com", "/maps/search/",
+            //{"api=1&query": "${local.latitude},${local.longitude}"});
+            final maps =
+                "http://maps.google.com/?q=loc:${local.latitude},${local.longitude}";
+            bool permissionsGranted =
+                await telephony.requestPhoneAndSmsPermissions;
+            telephony.sendSms(
+                to: "${widget.contact.info.phones.first.value}",
+                message:
+                    "No me estoy sintiendo muy bien, por favor llámame cuando puedas. Estoy en $maps");
+          }),
     );
   }
 }

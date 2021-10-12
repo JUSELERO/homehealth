@@ -21,6 +21,7 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(width: 20),
             Text("Bievenido a HomeHelp!",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
             SizedBox(height: size.height * 0.05),
@@ -105,17 +106,6 @@ class LoginPage extends StatelessWidget {
               style: TextButton.styleFrom(primary: Colors.black),
             ),
             // ELIMINAR ->>>
-            TextButton(
-              onPressed: () => Navigator.pushReplacementNamed(context, 'audio'),
-              child: Text('Reproducir audio'),
-              style: TextButton.styleFrom(primary: Colors.black),
-            ),
-            TextButton(
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, 'contacts2'),
-              child: Text('Contactos'),
-              style: TextButton.styleFrom(primary: Colors.black),
-            ),
           ],
         ),
       )),
@@ -127,7 +117,7 @@ class LoginPage extends StatelessWidget {
     Map info = await usuarioProvider.login(bloc.email, bloc.password);
     if (info['ok']) {
       blocPR.changeUid(info['Uid']); //agrega el valor de UID par e lgeneral.
-      Navigator.pushReplacementNamed(context, 'main-customer');
+      Navigator.pushReplacementNamed(context, 'testdiario');
     } else {
       mostrarAlerta(context, info['mensaje']);
     }

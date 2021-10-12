@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 //import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:homehealth/src/bloc/register_profile_bloc.dart';
@@ -12,9 +10,7 @@ import 'package:homehealth/src/pages/profile_page.dart';
 import 'package:homehealth/src/providers/provider.dart';
 import 'package:homehealth/src/providers/usuario_provider.dart';
 import 'package:homehealth/src/widgets/background.dart';
-
 import 'activities/test_state.dart';
-
 import 'auth/audioplayer.dart';
 
 class MainPage extends StatefulWidget {
@@ -24,7 +20,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final List<Widget> _listPages = [
-    MyActivitiesPage(),
+    AudioPlayerHH(),
     ActivitiesPage(),
     ProfilePage()
   ];
@@ -44,7 +40,7 @@ class _MainPageState extends State<MainPage> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.call),
-              label: 'Quiero Hablar',
+              label: 'Hacer llamada',
               backgroundColor: Colors.redAccent,
             ),
             BottomNavigationBarItem(
@@ -72,10 +68,10 @@ class _MainPageState extends State<MainPage> {
 
   Widget _crearBotones(RegisterProfileBloc bloc) {
     switch (_selectedIndex) {
-      case 0:
-        return AudioPlayerHH();
+      // case 0:
+      //   return Text('sss');
 
-        break;
+      //   break;
       case 1:
         return Positioned(
           left: 50.0,

@@ -8,6 +8,55 @@ class AudioPlayerHH extends StatefulWidget {
   AudioPlayerHHState createState() => AudioPlayerHHState();
 }
 
+class MostrarCuadroTexto extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+        side: BorderSide(color: Colors.grey),
+      ),
+      title: Column(children: [
+        const Text(
+          'Todo va a estar bien',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+        ),
+        SizedBox(height: 10),
+        Image(
+          image: AssetImage('assets/images/friends.png'),
+          width: 150,
+          height: 150,
+          fit: BoxFit.contain,
+        ),
+      ]),
+      content: Container(
+        decoration: new BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: const Color(0xFFFFFF),
+          //borderRadius: new BorderRadius.all(new Radius.circular(100.0)),
+        ),
+        child: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text(
+                'Estamos cargando tus contactos.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '\n En unos segundos, podrás llamar a una persona de confianza y se le enviará un mensaje automático de emergencia con tu ubicación.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w300),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class AudioPlayerHHState extends State<AudioPlayerHH> {
   AudioPlayer audioPlayer = AudioPlayer();
   AudioPlayerState audioPlayerState = AudioPlayerState.PAUSED;
@@ -54,64 +103,64 @@ class AudioPlayerHHState extends State<AudioPlayerHH> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.transparent,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _saveActivity(context),
-          child: Icon(Icons.call),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                color: Colors.pink,
-                margin: EdgeInsets.symmetric(vertical: 10),
-                padding: EdgeInsets.all(25),
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    Text("¡Estamos aquí para ti!",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 22.0)),
-                    SizedBox(height: size.height * 0.05),
-                    Text("Escucha algunas palabras reconfortantes más abajo",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 20.0)),
-                    SizedBox(height: size.height * 0.05),
-                    Image(
-                      image: AssetImage('assets/images/relax.png'),
-                      height: size.height * 0.35,
-                    ),
-                    SizedBox(height: size.height * 0.05),
-                    IconButton(
-                      iconSize: 50,
-                      onPressed: () {
-                        audioPlayerState == AudioPlayerState.PLAYING
-                            ? pauseMusic()
-                            : playMusic();
-                      },
-                      icon: Icon(
-                        audioPlayerState == AudioPlayerState.PLAYING
-                            ? Icons.pause_rounded
-                            : Icons.play_arrow_rounded,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    Text("Date un respiro. Dale play.",
-                        style: TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 20.0)),
-                    ElevatedButton(onPressed: () {}, child: Text('Boton'))
-                  ],
-                ),
-              ),
+    return Container(
+      width: double.infinity,
+      //color: Colors.pink,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text("¡Estamos aquí para ti!",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
+          SizedBox(height: size.height * 0.02),
+          // Text("Escucha algunas palabras \n reconfortantes más abajo",
+          //     textAlign: TextAlign.center,
+          //     style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0)),
+          // SizedBox(height: size.height * 0.02),
+          Image(
+            image: AssetImage('assets/images/relax.png'),
+            height: size.height * 0.35,
+          ),
+          SizedBox(height: size.height * 0.02),
+          IconButton(
+            iconSize: 50,
+            onPressed: () {
+              audioPlayerState == AudioPlayerState.PLAYING
+                  ? pauseMusic()
+                  : playMusic();
+            },
+            icon: Icon(
+              audioPlayerState == AudioPlayerState.PLAYING
+                  ? Icons.pause_rounded
+                  : Icons.play_arrow_rounded,
+              color: Colors.deepPurple,
             ),
-          ],
-        ));
+          ),
+          Text("Date un respiro. Dale play.",
+              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0)),
+          SizedBox(height: size.height * 0.05),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                minimumSize: Size(120.0, 40.0), // background (button) color
+                onPrimary: Colors.white, // foreground (text) color
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, 'contacts2');
+                showDialog(
+                    useRootNavigator: false,
+                    context: context,
+                    builder: (context) {
+                      return MostrarCuadroTexto();
+                    });
+              },
+              child: Text('¡Estoy en pánico!')),
+        ],
+      ),
+    );
   }
 
   Future<void> _saveActivity(BuildContext context) {

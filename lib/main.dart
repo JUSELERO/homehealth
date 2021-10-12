@@ -4,9 +4,10 @@ import 'package:homehealth/src/pages/activities/test_state.dart';
 import 'package:homehealth/src/pages/auth/appcontacts.dart';
 import 'package:homehealth/src/pages/auth/audioplayer.dart';
 import 'package:homehealth/src/pages/auth/edit_profile_page.dart';
+import 'package:homehealth/src/pages/auth/elegiropcion.dart';
+import 'package:homehealth/src/pages/auth/test_diario.dart';
 import 'package:homehealth/src/pages/contacts.dart';
 import 'package:homehealth/src/pages/customer/main_customer_page.dart';
-
 import 'package:homehealth/src/pages/home_page.dart';
 import 'package:homehealth/src/pages/auth/login_page.dart';
 import 'package:homehealth/src/pages/auth/register_page.dart';
@@ -46,7 +47,9 @@ class MyApp extends StatelessWidget {
           'contacts': (BuildContext context) => ContactsPage(),
           'contacts2': (BuildContext context) => MyAppContacts(),
           'test-generico': (BuildContext context) => TestGeneric(),
-          'audio': (BuildContext context) => AudioPlayerHH()
+          'audio': (BuildContext context) => AudioPlayerHH(),
+          'testdiario': (BuildContext context) => TestDiario(),
+          'opciones': (BuildContext context) => ElegirOpcion()
         },
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,

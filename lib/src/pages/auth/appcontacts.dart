@@ -105,7 +105,7 @@ class _MyAppContactsState extends State<MyAppContacts> {
     return Scaffold(
       appBar: AppBar(
         //widget.title
-        title: Text("Contacto"),
+        title: Text("Lista de contactos"),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -134,7 +134,7 @@ class _MyAppContactsState extends State<MyAppContacts> {
               child: TextField(
                 controller: searchController,
                 decoration: InputDecoration(
-                    labelText: 'Search',
+                    labelText: 'Buscar contacto',
                     border: new OutlineInputBorder(
                         borderSide: new BorderSide(
                             color: Theme.of(context).primaryColor)),
