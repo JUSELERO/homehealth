@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:homehealth/src/bloc/login_bloc.dart';
+import 'package:homehealth/src/bloc/test_bloc.dart';
+import 'package:homehealth/src/models/profile_model.dart';
+import 'package:homehealth/src/providers/provider.dart';
+import 'package:homehealth/src/providers/usuario_provider.dart';
+import 'package:homehealth/src/utils/utils.dart';
 import 'package:homehealth/src/widgets/background.dart';
 
 class TestDiario extends StatefulWidget {
@@ -87,6 +93,8 @@ class MostrarCuadroTexto_Mal extends StatelessWidget {
 class _TestDiarioState extends State<TestDiario> {
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.registerTest(context);
+    bloc.changeTypeTest("test-diario");
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Background(
@@ -129,6 +137,8 @@ class _TestDiarioState extends State<TestDiario> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
+                                  bloc.changeAnswer("Todo-bien");
+                                  _registerTest(bloc, context);
                                   Navigator.pushNamed(context, 'main-customer');
                                   showDialog(
                                       useRootNavigator: false,
@@ -147,6 +157,8 @@ class _TestDiarioState extends State<TestDiario> {
                             SizedBox(width: 20),
                             ElevatedButton.icon(
                                 onPressed: () {
+                                  bloc.changeAnswer("normal");
+                                  _registerTest(bloc, context);
                                   Navigator.pushNamed(context, 'opciones');
                                   showDialog(
                                       useRootNavigator: false,
@@ -170,6 +182,8 @@ class _TestDiarioState extends State<TestDiario> {
                             SizedBox(width: 20),
                             ElevatedButton.icon(
                                 onPressed: () {
+                                  bloc.changeAnswer("mal");
+                                  _registerTest(bloc, context);
                                   Navigator.pushNamed(context, 'contacts2');
                                   showDialog(
                                       useRootNavigator: false,
@@ -198,5 +212,19 @@ class _TestDiarioState extends State<TestDiario> {
             ],
           ),
         ));
+  }
+
+  _registerTest(RegisterTestBloc bloc, BuildContext context) async {
+    final UsuarioProvider usuarioProvider = new UsuarioProvider();
+    final _profileModel = Provider.registerProfile(context);
+    ;
+    bool info = await usuarioProvider.sendAnswer(
+        bloc.typeTest, bloc.answer, _profileModel);
+    if (info == true) {
+      // blocPR.changeUid(info['Uid']); agrega el valor de UID par e lgeneral.
+
+    } else {
+      mostrarAlerta(context, "a ocurrido un error no se registro la respuesta");
+    }
   }
 }
