@@ -18,6 +18,7 @@ class ContactDetails extends StatefulWidget {
 
 class _ContactDetailsState extends State<ContactDetails> {
   final Telephony telephony = Telephony.instance;
+
   @override
   Widget build(BuildContext context) {
     List<String> actions = <String>['Edit', 'Delete'];
@@ -159,18 +160,20 @@ class _ContactDetailsState extends State<ContactDetails> {
           backgroundColor: const Color(0xFFFF006E),
           child: Icon(Icons.phone),
           onPressed: () async {
-            //launch("tel:${widget.contact.info.phones.first.value}");
+            launch("tel:${widget.contact.info.phones.first.value}");
             final local = await determinePosition();
-            //final maps = Uri.https("google.com", "/maps/search/",
-            //{"api=1&query": "${local.latitude},${local.longitude}"});
+            // final maps = Uri.https("google.com", "/maps/search/",
+            //     {"api=1&query": "${local.latitude},${local.longitude}"});
+
             final maps =
                 "http://maps.google.com/?q=loc:${local.latitude},${local.longitude}";
+            // print(maps);
+            String casa = 'Mi casa';
             bool permissionsGranted =
                 await telephony.requestPhoneAndSmsPermissions;
             telephony.sendSms(
                 to: "${widget.contact.info.phones.first.value}",
-                message:
-                    "No me estoy sintiendo muy bien, por favor llámame cuando puedas. Estoy en $maps");
+                message: "No me estoy sintiendo bien. Estoy en $maps");
           }),
     );
   }
