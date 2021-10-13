@@ -150,15 +150,24 @@ class _ContactDetailsState extends State<ContactDetails> {
                           .toList(),
                     )
                   ],
-                )
+                ),
+                SizedBox(height: 20),
+                ListTile(
+                  title: Text(
+                      "Cuando realices la llamada, se enviará un mensaje de emergencia con tu ubicación de manera automática",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  //trailing: Text(widget.contact.info.familyName ?? ""),
+                ),
               ]),
             )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: const Color(0xFFFF006E),
-          child: Icon(Icons.phone),
+      floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Colors.red,
+          label: const Text('Llamar'),
+          icon: Icon(Icons.phone),
           onPressed: () async {
             launch("tel:${widget.contact.info.phones.first.value}");
             final local = await determinePosition();
@@ -168,7 +177,6 @@ class _ContactDetailsState extends State<ContactDetails> {
             final maps =
                 "http://maps.google.com/?q=loc:${local.latitude},${local.longitude}";
             // print(maps);
-            String casa = 'Mi casa';
             bool permissionsGranted =
                 await telephony.requestPhoneAndSmsPermissions;
             telephony.sendSms(
