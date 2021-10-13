@@ -18,6 +18,7 @@ class ContactDetails extends StatefulWidget {
 
 class _ContactDetailsState extends State<ContactDetails> {
   final Telephony telephony = Telephony.instance;
+
   @override
   Widget build(BuildContext context) {
     List<String> actions = <String>['Edit', 'Delete'];
@@ -149,28 +150,38 @@ class _ContactDetailsState extends State<ContactDetails> {
                           .toList(),
                     )
                   ],
-                )
+                ),
+                SizedBox(height: 20),
+                ListTile(
+                  title: Text(
+                      "Cuando realices la llamada, se enviará un mensaje de emergencia con tu ubicación de manera automática",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  //trailing: Text(widget.contact.info.familyName ?? ""),
+                ),
               ]),
             )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: const Color(0xFFFF006E),
-          child: Icon(Icons.phone),
+      floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Colors.red,
+          label: const Text('Llamar'),
+          icon: Icon(Icons.phone),
           onPressed: () async {
-            //launch("tel:${widget.contact.info.phones.first.value}");
+            launch("tel:${widget.contact.info.phones.first.value}");
             final local = await determinePosition();
-            //final maps = Uri.https("google.com", "/maps/search/",
-            //{"api=1&query": "${local.latitude},${local.longitude}"});
+            // final maps = Uri.https("google.com", "/maps/search/",
+            //     {"api=1&query": "${local.latitude},${local.longitude}"});
+
             final maps =
                 "http://maps.google.com/?q=loc:${local.latitude},${local.longitude}";
+            // print(maps);
             bool permissionsGranted =
                 await telephony.requestPhoneAndSmsPermissions;
             telephony.sendSms(
                 to: "${widget.contact.info.phones.first.value}",
-                message:
-                    "No me estoy sintiendo muy bien, por favor llámame cuando puedas. Estoy en $maps");
+                message: "No me estoy sintiendo bien. Estoy en $maps");
           }),
     );
   }
