@@ -24,8 +24,7 @@ class MostrarCuadroTexto extends StatelessWidget {
         child: SingleChildScrollView(
           child: ListBody(
             children: const <Widget>[
-              Text(
-                  'Puedes chequear cómo te has sentido últimamente en tu perfil',
+              Text('Gracias por contarnos cómo te sientes hoy.',
                   textAlign: TextAlign.center),
             ],
           ),

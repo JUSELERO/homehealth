@@ -6,6 +6,8 @@ import 'package:homehealth/src/bloc/register_profile_bloc.dart';
 import 'package:homehealth/src/models/profile_model.dart';
 import 'package:homehealth/src/pages/activities/activities_page.dart';
 import 'package:homehealth/src/pages/activities/my_activities_page.dart';
+import 'package:homehealth/src/pages/auth/appcontacts.dart';
+import 'package:homehealth/src/pages/contacts.dart';
 import 'package:homehealth/src/pages/profile_page.dart';
 import 'package:homehealth/src/providers/provider.dart';
 import 'package:homehealth/src/providers/usuario_provider.dart';
@@ -18,11 +20,61 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
+class MostrarCuadroTexto_Mal extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+        side: BorderSide(color: Colors.grey),
+      ),
+      title: Column(children: [
+        const Text(
+          'Todo va a estar bien',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+        ),
+        SizedBox(height: 10),
+        Image(
+          image: AssetImage('assets/images/friends.png'),
+          width: 150,
+          height: 150,
+          fit: BoxFit.contain,
+        ),
+      ]),
+      content: Container(
+        decoration: new BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: const Color(0xFFFFFF),
+          //borderRadius: new BorderRadius.all(new Radius.circular(100.0)),
+        ),
+        child: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text(
+                'Estamos cargando tus contactos.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '\n En unos segundos, podrás llamar a una persona de confianza y se le enviará un mensaje automático de emergencia con tu ubicación.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w300),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _MainPageState extends State<MainPage> {
   final List<Widget> _listPages = [
     AudioPlayerHH(),
-    ActivitiesPage(),
-    ProfilePage()
+    MyAppContacts(),
+    //ActivitiesPage(),
+    //ProfilePage()
   ];
 
   int _selectedIndex = 0;
@@ -39,19 +91,19 @@ class _MainPageState extends State<MainPage> {
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.call),
-              label: 'Hacer llamada',
+              icon: Icon(Icons.home),
+              label: 'Inicio',
               backgroundColor: Colors.redAccent,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.text_snippet),
+              icon: Icon(Icons.phone_enabled_outlined),
               backgroundColor: Colors.blueAccent,
-              label: 'Tests',
+              label: 'Estoy en pánico',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'Perfil',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.school),
+            //   label: 'Perfil',
+            // ),
           ],
           onTap: _onItemTapped,
           selectedItemColor: Colors.amber[800],
@@ -73,21 +125,33 @@ class _MainPageState extends State<MainPage> {
 
       //   break;
       case 1:
-        return Positioned(
-          left: 50.0,
-          top: 1000.0,
-          child: ListView(
-            children: [
-              myLayoutWidget(),
-              myLayoutWidget(),
-              myLayoutWidget(),
-              myLayoutWidget(),
-              myLayoutWidget(),
-              myLayoutWidget(),
-              myLayoutWidget(),
-            ],
-          ),
+        return FloatingActionButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, 'contacts2');
+            showDialog(
+                useRootNavigator: false,
+                context: context,
+                builder: (context) {
+                  return MostrarCuadroTexto_Mal();
+                });
+          },
+          child: Icon(Icons.edit),
         );
+      // return Positioned(
+      //   left: 50.0,
+      //   top: 1000.0,
+      //   child: ListView(
+      //     children: [
+      //       myLayoutWidget(),
+      //       myLayoutWidget(),
+      //       myLayoutWidget(),
+      //       myLayoutWidget(),
+      //       myLayoutWidget(),
+      //       myLayoutWidget(),
+      //       myLayoutWidget(),
+      //     ],
+      //   ),
+      // );
       //TestGeneric();
       // myLayoutWidget()
 
