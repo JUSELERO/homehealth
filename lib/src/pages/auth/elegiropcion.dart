@@ -146,12 +146,6 @@ class _ElegirOpcionState extends State<ElegirOpcion> {
                             ElevatedButton.icon(
                                 onPressed: () {
                                   Navigator.pushNamed(context, 'main-customer');
-                                  showDialog(
-                                      useRootNavigator: false,
-                                      context: context,
-                                      builder: (context) {
-                                        return MostrarCuadroTexto();
-                                      });
                                 },
                                 icon: Icon(
                                   Icons.house_outlined,
