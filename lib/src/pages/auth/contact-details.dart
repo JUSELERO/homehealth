@@ -180,8 +180,10 @@ class _ContactDetailsState extends State<ContactDetails> {
             bool permissionsGranted =
                 await telephony.requestPhoneAndSmsPermissions;
             telephony.sendSms(
+                isMultipart: true,
                 to: "${widget.contact.info.phones.first.value}",
-                message: "No me estoy sintiendo bien. Estoy en $maps");
+                message:
+                    "Tengo una emergencia. No me estoy sintiendo bien, por favor ayúdame. Estoy en $maps");
           }),
     );
   }
