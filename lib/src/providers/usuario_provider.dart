@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:homehealth/src/bloc/register_profile_bloc.dart';
 import 'package:homehealth/src/models/profile_model.dart';
 import 'package:homehealth/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
 class UsuarioProvider {
@@ -100,7 +102,7 @@ class UsuarioProvider {
     }
   }
 
-  ///     ESTE METODO NO SE A TERMINA DO DEVUELVE UN OBJETO PROFILE PERO EL OBJETO ESTA VACIO FALTA RELLENARLO CKON L RESPUESTA DE LACONSUTLA Y VERIFICAR LA CONSULTA JSLR
+  ///
   Future<Map<String, dynamic>> getProfileUser(ProfileModel profile) async {
     final url =
         '$_urlProfile/profiles/${profile.uID}.json'; //  se le quita el authtentication pora hora porque genera problema con laregla del servidor "?auth=${_prefs.token}"
@@ -110,6 +112,37 @@ class UsuarioProvider {
     log(" DECODED DATA ----> $decodedData ");
     if (decodedData[0] != 'null') {
       //.containsKey('uID')  se lo uite
+      return decodedData;
+    } else {
+      return decodedData;
+    }
+  }
+
+  Future<bool> sendAnswer(
+      String test, String answer, RegisterProfileBloc profile) async {
+    final url =
+        '$_urlProfile/Test/${profile.uID}.json'; //  se le quita el authtentication pora hora porque genera problema con laregla del servidor "?auth=${_prefs.token}"
+    String bodyPost =
+        '{"test":"$test","answer":"$answer","date":"${DateFormat("dd-MM-yyyy").format(DateTime.now())}"}';
+    final resp = await http.post(Uri.parse(url), body: bodyPost);
+    Map<String, dynamic> decodedData = json.decode(resp.body);
+    log(" DECODED DATA ----> $decodedData ");
+    if (decodedData.containsKey('name')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  ///consulta de el historico en test de inicio
+  Future<Map<String, dynamic>> getTestAnswer(
+      RegisterProfileBloc profile) async {
+    final url = '$_urlProfile/Test/${profile.uID}.json';
+
+    final resp = await http.get(Uri.parse(url));
+    Map<String, dynamic> decodedData = json.decode(resp.body);
+    log(" DECODED DATA ----> $decodedData ");
+    if (decodedData[0] != 'null') {
       return decodedData;
     } else {
       return decodedData;
