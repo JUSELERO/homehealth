@@ -72,7 +72,7 @@ class MostrarCuadroTexto_Mal extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
-                '\n En unos segundos, podrás llamar a una persona de confianza y se le enviará un mensaje automático de emergencia con tu ubicación. \n\n Hemos registrado tu estado de ánimo y puedes chequearlo en tu perfil',
+                '\n En unos segundos, podrás llamar a una persona de confianza y se le enviará un mensaje automático de emergencia con tu ubicación.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w300),
               ),
